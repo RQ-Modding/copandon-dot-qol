@@ -2,7 +2,7 @@
   "id": "copandon-dot-qol",
   "name": "Copandon Dot QoL",
   "author": "Magnum Mods",
-  "version": "1.0.0",
-  "loader": "0.17.0",
+  "version": "1.0.1",
+  "loader": "0.22.0",
   "priority": 0
 }
