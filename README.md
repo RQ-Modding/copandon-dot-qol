@@ -7,4 +7,6 @@
 
 Bad Luck deals no damage and does not stun.
 
+With **Better Explained**, the Fortune hover says Can Crit / Can Stun. This mod has priority 1 so it loads after Better Explained and corrects that line.
+
 Local-only git. No remote.

@@ -11,6 +11,7 @@ local BAD_LUCK = 3      -- FA[102], the result of the next Fortune
 rq.log("Copandon Dot QoL: Fortune can crit and stun")
 
 if not rq.combat.install() then error("copandon-dot-qol: rq.combat.install failed") end
+if not rq.skill.install() then error("copandon-dot-qol: rq.skill.install failed") end
 
 if rq.ain.patch_int("衝撃計算", FORTUNE, -1) ~= 1 then
   error("copandon-dot-qol: the stun check of Fortune was not found")
@@ -36,4 +37,13 @@ rq.combat.on_crit(function(ctx)
     rate = rate + STEALTH_CRIT
   end
   return math.random(100) <= rate // 2 -- all enemies: half, as the game does
+end)
+
+-- Better Explained writes the game's own rules on the hover, where Fortune can do
+-- neither. This mod loads after it (priority 1), so its line is already there.
+rq.skill.on_describe(function(skillNo, text)
+  if skillNo ~= FORTUNE or not text then
+    return text
+  end
+  return (text:gsub("Can't Crit", "Can Crit"):gsub("Can't Stun", "Can Stun"))
 end)
