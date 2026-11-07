@@ -4,7 +4,7 @@
 --   Crit: the game zeroes the rate for multipliers above 150, and Fortune's is 500,
 --         so the mod rolls with the same rules the game uses for an all-enemies attack.
 
-local FORTUNE = 448
+local FORTUNE = rq.ids.skill.FORTUNE_448
 local STEALTH_CRIT = 30 -- the game's bonus while hidden
 local BAD_LUCK = 3      -- FA[102], the result of the next Fortune
 
