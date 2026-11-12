@@ -25,7 +25,7 @@ after it (priority 1) and changes that line to Can Crit / Can Stun.
 
 ## Install
 
-Needs [RQ MOD](https://github.com/RQ-Modding/RQ-Mod) with loader **1.15.0** or newer. Extract the
+Needs [RQ MOD](https://github.com/RQ-Modding/RQ-Mod) with loader **2.37.0** or newer. Extract the
 release zip into the game's `mods` folder, so that you have `mods/copandon-dot-qol/mod.json`.
 
 ## License

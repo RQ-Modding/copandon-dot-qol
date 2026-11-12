@@ -1,6 +1,7 @@
 -- Copandon Dot QoL. Fortune (skill 448) can crit and stun like other attacks.
---   Stun: the game skips 衝撃計算 for this skill number, so that check is patched out.
---         Bad Luck deals no damage and still does not stun.
+--   Stun: the game never stuns with this skill number; rq.combat.on_stun gives it the rate of the
+--         game's formula (ctx.base), in the forecast too. Bad Luck deals no damage and still does
+--         not stun.
 --   Crit: the game zeroes the rate for multipliers above 150, and Fortune's is 500,
 --         so the mod rolls with the same rules the game uses for an all-enemies attack.
 
@@ -10,22 +11,16 @@ local BAD_LUCK = 3      -- FA[102], the result of the next Fortune
 
 rq.log("Copandon Dot QoL: Fortune can crit and stun")
 
-if not rq.combat.install() then error("copandon-dot-qol: rq.combat.install failed") end
-if not rq.skill.install() then error("copandon-dot-qol: rq.skill.install failed") end
-
-if rq.ain.patch_int("衝撃計算", FORTUNE, -1) ~= 1 then
-  error("copandon-dot-qol: the stun check of Fortune was not found")
-end
-
--- As the game's own skip: the battle forecast reads ◆ＡＡ as the stun rate.
-rq.ain.hook("衝撃計算", {
-  before = function(h)
-    if h.args[3] == FORTUNE and rq.ain.global("FA", 102) == BAD_LUCK then
-      rq.ain.set_global("◆ＡＡ", 0)
-      h.skip = true
-    end
-  end,
-})
+-- The game blocks this skill ("skill"); a target stunned the turn before stays blocked ("repeat").
+rq.combat.on_stun(function(ctx)
+  if ctx.skill ~= FORTUNE or ctx.blocked ~= "skill" then
+    return nil
+  end
+  if rq.ain.global("FA", 102) == BAD_LUCK then
+    return 0
+  end
+  return ctx.base
+end)
 
 rq.combat.on_crit(function(ctx)
   if ctx.skill ~= FORTUNE then
