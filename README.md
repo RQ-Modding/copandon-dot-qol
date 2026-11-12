@@ -20,12 +20,12 @@ Nothing.
 
 ## Works with
 
-Better Explained: its Fortune hover says Can't Crit / Can't Stun, the game's rules. This mod loads
-after it (priority 1) and changes that line to Can Crit / Can Stun.
+Better Explained: the rules are set with the loader's `rq.combat.set_rules`, so its Fortune hover
+says Can Crit / Can Stun by itself. Any other mod that reads `rq.combat.rules` sees them too.
 
 ## Install
 
-Needs [RQ MOD](https://github.com/RQ-Modding/RQ-Mod) with loader **2.37.0** or newer. Extract the
+Needs [RQ MOD](https://github.com/RQ-Modding/RQ-Mod) with loader **2.44.0** or newer. Extract the
 release zip into the game's `mods` folder, so that you have `mods/copandon-dot-qol/mod.json`.
 
 ## License
