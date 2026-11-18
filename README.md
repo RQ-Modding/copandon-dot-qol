@@ -2,6 +2,10 @@
 
 Copandon Dot's **Fortune** can land a critical hit and stun. In the game it can do neither.
 
+## Showcase
+
+<img width="520" height="383" alt="image" src="https://github.com/user-attachments/assets/302ef2f4-4cf9-4f10-a1aa-7fff98e19e55" />
+
 ## What it changes
 
 - **Stun:** Fortune stuns by the normal rules, her stun rate against the target's resistance.
